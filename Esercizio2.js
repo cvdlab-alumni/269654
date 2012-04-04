@@ -288,7 +288,7 @@ var array_of_points = [[38.8,7],[38.8,14],[32.2,7],[32.2,14],[26,7],[26,14],[45.
 buildColumn(array_of_points);
 
 
-var pavillion = STRUCT([baseStucture,murature]); 
+var pavillion = STRUCT([baseStucture,murature,swimmingPool]); 
 
 DRAW(pavillion);
 
