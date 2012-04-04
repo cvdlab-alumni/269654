@@ -60,18 +60,13 @@ var scales = STRUCT ([T([1])([1]),
 											 SIMPLEX_GRID([[0.375],[3],[0.125]]),T([0])([0.375])]);
 
 var baseStucture = STRUCT([cornerLeft,rightCorner,T([0])([1]),
-													poolBase,
+													poolBase,mainPool,
 													leftBuildingBase,T([0])([20]),
 													atriumBase,T([0])([15]),
 													scalesBase,scales,T([0])([3]),T([1])([4]),
 													rightBuilding,T([0])([8]),
-													boardSmallPool,T([0])([4])
+													smallPool,boardSmallPool,T([0])([4])
 													]);
-
-var swimmingPool = STRUCT ([mainPool,smallPool]);
-
-COLOR([0.125,0.698,0.666])(swimmingPool);
-
 
 var bigWall = T([0])([7.5])(T([1])([15])(SIMPLEX_GRID([
 	[20],
@@ -288,9 +283,9 @@ var array_of_points = [[38.8,7],[38.8,14],[32.2,7],[32.2,14],[26,7],[26,14],[45.
 buildColumn(array_of_points);
 
 
-var pavillion = STRUCT([baseStucture,murature,swimmingPool]); 
+var pavilion = STRUCT([baseStucture,murature]); 
 
-DRAW(pavillion);
+DRAW(pavilion);
 
 
 
