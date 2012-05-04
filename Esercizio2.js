@@ -60,18 +60,13 @@ var scales = STRUCT ([T([1])([1]),
 											 SIMPLEX_GRID([[0.375],[3],[0.125]]),T([0])([0.375])]);
 
 var baseStucture = STRUCT([cornerLeft,rightCorner,T([0])([1]),
-													poolBase,
+													poolBase,mainPool,
 													leftBuildingBase,T([0])([20]),
 													atriumBase,T([0])([15]),
 													scalesBase,scales,T([0])([3]),T([1])([4]),
 													rightBuilding,T([0])([8]),
-													boardSmallPool,T([0])([4])
+													smallPool,boardSmallPool,T([0])([4])
 													]);
-
-var piscine = STRUCT ([mainPool,smallPool]);
-
-COLOR([0.125,0.698,0.666])(piscine);
-
 
 var bigWall = T([0])([7.5])(T([1])([15])(SIMPLEX_GRID([
 	[20],
@@ -227,7 +222,7 @@ var superiorGlassDoorOrizz = SIMPLEX_GRID([
 var superiorGlassDoor = STRUCT([ T([0,1,2])([40,13.67,1]), superiorGlassDoorVert, superiorGlassDoorOrizz ]);
 
 //la porta che unisce le due vetrate
-var bigDoor = T([0,1,2])([31,7.25,1])(SIMPLEX_GRID([[1], [6.5], [3]]));
+var bigDoor = T([0,1])([31,7.25])(SIMPLEX_GRID([[1], [6.5], [3]]));
 
 var rightRoof = T([0,1])([24,4])(SIMPLEX_GRID([[23],[13],[-1,-3,0.3]]));
 
@@ -288,12 +283,6 @@ var array_of_points = [[38.8,7],[38.8,14],[32.2,7],[32.2,14],[26,7],[26,14],[45.
 buildColumn(array_of_points);
 
 
-var pavilion = STRUCT([baseStucture,murature, piscine]); 
+var pavilion = STRUCT([baseStucture,murature]); 
 
 DRAW(pavilion);
-
-
-
-
-
-
