@@ -611,11 +611,62 @@ var disegna_carrello = function(){
 var carrello = T([0,1,2])([2.2,1,0.3])(disegna_carrello());
 DRAW(carrello);
 
+var disegna_carrello = function(){
+
+	var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(14)]);
+	var domain2 = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(14)]);
+	var domain3 = DOMAIN([[0,1],[0,1],[0,1]])([15,15,15]);
+
+  var gancio = CUBOID([0.1,0.1,2]);
+ 
+  var controlPoint1 = [[0,0,0],[0,0.6,0],[0,0,1],[ 0,0,-1]];
+  var c1 = CUBIC_HERMITE(S0)(controlPoint1);
+  var curva1 = MAP(c1)(domain);
+  //mezzo cerchio sinistro
+  var controlPoint2 = [[0,0,0],[0,0.6,0],[0,0,-1],[ 0,0,1]];
+  var c2 = CUBIC_HERMITE(S0)(controlPoint2);
+  var curva2 = MAP(c2)(domain);
+
+  var controlPoint3 = [[0.3,0,0],[0.3,0.6,0],[0,0,1],[ 0,0,-1]];
+  var c3 = CUBIC_HERMITE(S0)(controlPoint3);
+  var curva3 = MAP(c3)(domain);
+  //mezzo cerchio sinistro
+  var controlPoint4 = [[0.3,0,0],[0.3,0.6,0],[0,0,-1],[ 0,0,1]];
+  var c4 = CUBIC_HERMITE(S0)(controlPoint4);
+  var curva4= MAP(c4)(domain);
+
+  var latoDx = CUBIC_HERMITE(S1)([c1,c2, [0,0,0],[0,0,0]]);
+  var disLatoDx = MAP(latoDx)(domain2);
+
+  var latoSx = CUBIC_HERMITE(S1)([c3,c4, [0,0,0],[0,0,0]]);
+  var disLatoSx = MAP(latoSx)(domain2);
+
+  var gommaSup = BEZIER(S2)([latoSx, latoDx]);
+  var disGommaSup = MAP(gommaSup)(domain3);
+  
+  
+
+  var ruota = STRUCT([disLatoDx, disLatoSx, disGommaSup]);
+
+  ruota = COLOR([0,0,0,1])(ruota);
+
+  var carrello = STRUCT([ruota,T([0,1])([-0.1,0.25]), gancio,T([2])([1])]);
+  return carrello;
+}
+
+var carrello_ala_sx = T([0,1,2])([-1,6.5,-0.6])(disegna_carrello());
+DRAW(carrello_ala_sx);
+
+var carrello_ala_dx = T([0,1,2])([5.5,6.5,-0.6])(disegna_carrello());
+DRAW(carrello_ala_dx);
+
+
 
 
 //##################################################################################################################
 
 //STABILIZZATORE
+
 
 var stabilizzatore_verticale = function (){
 		
