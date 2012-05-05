@@ -14,7 +14,8 @@ var pista = STRUCT([			T([0])([10]), segmentato,
                                 ]);
 
 
-var pista_atterraggio_completa = STRUCT([T([0])([-9.5]),pista,striscia_bianca_sx,striscia_bianca_dx,pista_atterraggio]);
+var pista_atterraggio_completa = STRUCT([T([0,1,2])([-9.5,-40,-0.8]),pista,striscia_bianca_sx,striscia_bianca_dx,pista_atterraggio]);
+pista_atterraggio_completa = R([1,2])(-PI/12)(pista_atterraggio_completa);
 DRAW(pista_atterraggio_completa);
 
 //ali
