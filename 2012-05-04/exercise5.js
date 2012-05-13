@@ -136,8 +136,8 @@ var curve_base_dx = MAP(curveMapping_base_dx)(domain);
 
 
 //Linea montante sinistra
-var controlpoints = [[2,0,1.5],[1,6,2],[0,0,0],[0,0,0]];
-var curveMapping_montante_sx = CUBIC_HERMITE(S0)(controlpoints);
+var controlpoints = [[2,0,1.5],[1,6,2],[0,0,0],[0,0,0var
+]]; curveMapping_montante_sx = CUBIC_HERMITE(S0)(controlpoints);
 var curve_montante_sx = MAP(curveMapping_montante_sx)(domain);
 
 
