@@ -34,228 +34,214 @@ var get_parametric_curve = function (x,z,alpha){
 		var curve = [curveMapping_dw_1,curveMapping_up_1];
 
 
-	}
-	return curve;
-}
+		}
+		return curve;
+	}	
 
 //Base del RE
 
-var c1 =  get_parametric_curve(0.5,0,1);
-var c2 = 	get_parametric_curve(0.5,0.2,1);
-var c3 = get_parametric_curve(0.8,0.6,1);
-var c4 = get_parametric_curve(2,0.8,1);
-var c5 = get_parametric_curve(2,0.9,1);
+	var c1 =  get_parametric_curve(0.5,0,1);
+	var c2 = 	get_parametric_curve(0.5,0.2,1);
+	var c3 = get_parametric_curve(0.8,0.6,1);
+	var c4 = get_parametric_curve(2,0.8,1);
+	var c5 = get_parametric_curve(2,0.9,1);
 
-var c6 = get_parametric_curve(0.5,1,1);
-var c7 = get_parametric_curve(0.3,1.1,1);
-var c8 = get_parametric_curve(0,1.2,1);
-var c9 = get_parametric_curve(0.2,1.3,1);
-var c10 = get_parametric_curve(0.8,1.4,1);
-var c11 = get_parametric_curve(2,1.5,1);
+	var c6 = get_parametric_curve(0.5,1,1);
+	var c7 = get_parametric_curve(0.3,1.1,1);
+	var c8 = get_parametric_curve(0,1.2,1);
+	var c9 = get_parametric_curve(0.2,1.3,1);
+	var c10 = get_parametric_curve(0.8,1.4,1);
+	var c11 = get_parametric_curve(2,1.5,1);
 
-var c12 = get_parametric_curve(0.5,1.8,1);
-var c13 = get_parametric_curve(0,2,1);
-var c14 = get_parametric_curve(0.1,2.4,0);
-var c15 = get_parametric_curve(0.2,2.8,0);
-var c16 = get_parametric_curve(0.3,3,0);
-
-
-var domain = PROD1x1([INTERVALS(1)(100),INTERVALS(1)(100)]);
-
-var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0],c5[0],c6[0],c7[0],c8[0],c9[0],c10[0],c11[0],c12[0],c13[0],c14[0],c15[0],c16[0]]);
-var outUp = COLOR([1,1,0.82])(MAP(cs1)(domain));
-DRAW(outUp);
-
-var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1],c5[1],c6[1],c7[1],c8[1],c9[1],c10[1],c11[1],c12[1],c13[1],c14[1],c15[1],c16[1]]);
-var outUp =  COLOR([1,1,0.82])(MAP(cs2)(domain));
-DRAW(outUp);
-
-//tappo inferiore
-
-var t1 = BEZIER(S1)([c1[0],c1[1]]);
-var tappo_inf = COLOR([0,0,0])(MAP(t1)(domain));
-DRAW(tappo_inf);
-
-//tappo superiore
-
-var t2 = BEZIER(S1)([c16[0],c16[1]]);
-var tappo_sup = COLOR([0,0,0])(MAP(t2)(domain));
-DRAW(tappo_sup);
-
-//secondo pezzo del corpo
-
-//primo andulatorio corpo
-var c1 = get_parametric_curve(0.5,3,0);
-var c2 = get_parametric_curve(0.5,3.2,0);
-
-var cs1 = BEZIER(S1)([c1[0],c2[0]]);
-var outUp = COLOR([1,1,0.82])(MAP(cs1)(domain));
-DRAW(outUp)
-
-var cs2 = BEZIER(S1)([c1[1],c2[1]]);
-var outUp = COLOR([1,1,0.82])(MAP(cs2)(domain));
-DRAW(outUp)
+	var c12 = get_parametric_curve(0.5,1.8,1);
+	var c13 = get_parametric_curve(0,2,1);
+	var c14 = get_parametric_curve(0.1,2.4,0);
+	var c15 = get_parametric_curve(0.2,2.8,0);
+	var c16 = get_parametric_curve(0.3,3,0);
 
 
-//terzo corpo centrale
-var c1 = get_parametric_curve(0.4,3.2,0);
-var c2 = get_parametric_curve(0.5,3.6,0);
-var c3 = get_parametric_curve(0.55,4,0);
-var c4 = get_parametric_curve(0.55,4.5,0);
+	var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(20)]);
+
+	var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0],c5[0],c6[0],c7[0],c8[0],c9[0],c10[0],c11[0],c12[0],c13[0],c14[0],c15[0],c16[0]]);
+	var outUp1 = COLOR([1,1,0.82])(MAP(cs1)(domain));
+
+	var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1],c5[1],c6[1],c7[1],c8[1],c9[1],c10[1],c11[1],c12[1],c13[1],c14[1],c15[1],c16[1]]);
+	var outUp2 =  COLOR([1,1,0.82])(MAP(cs2)(domain));
+
+	//tappo inferiore
+
+	var t1 = BEZIER(S1)([c1[0],c1[1]]);
+	var tappo_inf = COLOR([0,0,0])(MAP(t1)(domain));
+
+	//tappo superiore
+
+	var t2 = BEZIER(S1)([c16[0],c16[1]]);
+	var tappo_sup = COLOR([0,0,0])(MAP(t2)(domain));
+
+	var first_piece = STRUCT([outUp1,outUp2,tappo_inf,tappo_sup]);
+
+	//secondo pezzo del corpo
+
+	//primo andulatorio corpo
+	var c1 = get_parametric_curve(0.5,3,0);
+	var c2 = get_parametric_curve(0.5,3.2,0);
+
+	var cs1 = BEZIER(S1)([c1[0],c2[0]]);
+	var outUp3 = COLOR([1,1,0.82])(MAP(cs1)(domain));
+
+	var cs2 = BEZIER(S1)([c1[1],c2[1]]);
+	var outUp4 = COLOR([1,1,0.82])(MAP(cs2)(domain));
 
 
-var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0]]);
-var outUp = COLOR([1,1,0.82])(MAP(cs1)(domain));
-DRAW(outUp)
-
-var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1]]);
-var outUp = COLOR([1,1,0.82])(MAP(cs2)(domain));
-DRAW(outUp)
-
-//copertura
-var t2 = BEZIER(S1)([c1[0],c1[1]]);
-var copertura = COLOR([0,0,0])(MAP(t2)(domain));
-DRAW(copertura);
+	//terzo corpo centrale
+	var c1 = get_parametric_curve(0.4,3.2,0);
+	var c2 = get_parametric_curve(0.5,3.6,0);
+	var c3 = get_parametric_curve(0.55,4,0);
+	var c4 = get_parametric_curve(0.55,4.5,0);
 
 
-//prima ciambella dal basso
-var c1 = get_parametric_curve(0.55,4.5,0);
-var c2 = get_parametric_curve(0.2,4.65,1);
-var c3 = get_parametric_curve(0.25,4.7,0);
-var c4 = get_parametric_curve(0.55,4.75,0);
+	var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0]]);
+	var outUp5 = COLOR([1,1,0.82])(MAP(cs1)(domain));
 
-var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0]]);
-var outUp = COLOR([0,0,0])(MAP(cs1)(domain));
-DRAW(outUp)
+	var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1]]);
+	var outUp6 = COLOR([1,1,0.82])(MAP(cs2)(domain));
 
-var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1]]);
-var outUp = COLOR([0,0,0])(MAP(cs2)(domain));
-DRAW(outUp)
-
-//trattino piatto
-
-var c1 = get_parametric_curve(0.55,4.75,0);
-var c2 = get_parametric_curve(0.55,4.9,0);
-
-var cs1 = BEZIER(S1)([c1[0],c2[0]]);
-var outUp = COLOR([1,1,0.82])(MAP(cs1)(domain));
-DRAW(outUp)
-
-var cs2 = BEZIER(S1)([c1[1],c2[1]]);
-var outUp = COLOR([1,1,0.82])(MAP(cs2)(domain));
-DRAW(outUp)
+	second_piece = STRUCT([outUp3,outUp4,outUp5,outUp6]);
 
 
-//seconda ciambella dal basso
-var c1 = get_parametric_curve(0.55,4.9,0);
-var c2 = get_parametric_curve(0.1,4.95,0);
-var c3 = get_parametric_curve(0.35,5.1,0);
-var c4 = get_parametric_curve(0.55,5.15,0);
-
-var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0]]);
-var outUp = COLOR([0,0,0])(MAP(cs1)(domain));
-DRAW(outUp)
-
-var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1]]);
-var outUp = COLOR([0,0,0])(MAP(cs2)(domain));
-DRAW(outUp)
-
-//trattino piatto poco piu lungo
-
-var c1 = get_parametric_curve(0.55,5.15,0);
-var c2 = get_parametric_curve(0.55,5.55,0);
-
-var cs1 = BEZIER(S1)([c1[0],c2[0]]);
-var outUp = COLOR([1,1,0.82])(MAP(cs1)(domain));
-DRAW(outUp)
-
-var cs2 = BEZIER(S1)([c1[1],c2[1]]);
-var outUp = COLOR([1,1,0.82])(MAP(cs2)(domain));
-DRAW(outUp)
+	//copertura
+	var t2 = BEZIER(S1)([c1[0],c1[1]]);
+	var copertura = COLOR([0,0,0])(MAP(t2)(domain));
 
 
-//terza e ultima ciambella
-var c1 = get_parametric_curve(0.55,5.55,0);
-var c2 = get_parametric_curve(0.4,5.6,0);
-var c3 = get_parametric_curve(0.45,5.65,0);
-var c4 = get_parametric_curve(0.55,5.7,0);
+	//prima ciambella dal basso
+	var c1 = get_parametric_curve(0.55,4.5,0);
+	var c2 = get_parametric_curve(0.2,4.65,1);
+	var c3 = get_parametric_curve(0.25,4.7,0);
+	var c4 = get_parametric_curve(0.55,4.75,0);
 
-var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0]]);
-var outUp = COLOR([0,0,0])(MAP(cs1)(domain));
-DRAW(outUp)
+	var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0]]);
+	var outUp7 = COLOR([0,0,0])(MAP(cs1)(domain));
 
-var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1]]);
-var outUp = COLOR([0,0,0])(MAP(cs2)(domain));
-DRAW(outUp);
+	var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1]]);
+	var outUp8 = COLOR([0,0,0])(MAP(cs2)(domain));
 
+	//trattino piatto
 
-var c1 = get_parametric_curve(0.55,5.7,0);
-var c2 = get_parametric_curve(0.3,7,1);
+	var c1 = get_parametric_curve(0.55,4.75,0);
+	var c2 = get_parametric_curve(0.55,4.9,0);
 
-var cs1 = BEZIER(S1)([c1[0],c2[0]]);
-var outUp = COLOR([1,1,0.82])(MAP(cs1)(domain));
-DRAW(outUp);
+	var cs1 = BEZIER(S1)([c1[0],c2[0]]);
+	var outUp9 = COLOR([1,1,0.82])(MAP(cs1)(domain));
 
-var cs2 = BEZIER(S1)([c1[1],c2[1]]);
-var outUp = COLOR([1,1,0.82])(MAP(cs2)(domain));
-DRAW(outUp);
+	var cs2 = BEZIER(S1)([c1[1],c2[1]]);
+	var outUp10 = COLOR([1,1,0.82])(MAP(cs2)(domain));
 
-//tappo superiore
-
-var cs1 = BEZIER(S1)([c2[0],c2[1]]);
-var outUp = COLOR([1,1,0.82])(MAP(cs1)(domain));
-DRAW(outUp);
-
-//piccolo bordo
+	var third_piece = STRUCT([copertura,outUp7,outUp8,outUp9,outUp10]);
 
 
-var c1 = get_parametric_curve(0.55,7,0);
-var c2 = get_parametric_curve(0.55,7,0);
-//var c3 = get_parametric_curve(0.1,6.5,0);
+	//seconda ciambella dal basso
+	var c1 = get_parametric_curve(0.55,4.9,0);
+	var c2 = get_parametric_curve(0.1,4.95,0);
+	var c3 = get_parametric_curve(0.35,5.1,0);
+	var c4 = get_parametric_curve(0.55,5.15,0);
 
-var cs1 = BEZIER(S1)([c1[0],c2[0]]);
-var outUp = COLOR([1,1,0.82])(MAP(cs1)(domain));
-DRAW(outUp);
+	var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0]]);
+	var outciambella_dal_basso = COLOR([0,0,0])(MAP(cs1)(domain));
 
-var cs2 = BEZIER(S1)([c1[1],c2[1]]);
-var outUp =COLOR([1,1,0.82])( MAP(cs2)(domain));
-DRAW(outUp);
+	var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1]]);
+	var outciambella_dal_basso2 = COLOR([0,0,0])(MAP(cs2)(domain));
 
-//sotto_la_testa_del_re
+	//trattino piatto poco piu lungo
 
-//prima cupoletta
+	var c1 = get_parametric_curve(0.55,5.15,0);
+	var c2 = get_parametric_curve(0.55,5.55,0);
 
-var c1 = get_parametric_curve(0.5,7.0,0);
-var c2 = get_parametric_curve(0.1,7.15,1);
-var c3 = get_parametric_curve(0.5,7.25,0);
+	var cs1 = BEZIER(S1)([c1[0],c2[0]]);
+	var outUp11 = COLOR([1,1,0.82])(MAP(cs1)(domain));
 
-var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0]]);
-var outUp = COLOR([0,0,0])(MAP(cs1)(domain));
-DRAW(outUp);
+	var cs2 = BEZIER(S1)([c1[1],c2[1]]);
+	var outUp12 = COLOR([1,1,0.82])(MAP(cs2)(domain));
 
-var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1]]);
-var outUp = COLOR([0,0,0])(MAP(cs2)(domain));
-DRAW(outUp);
 
-//seconda cupoletta
+	//terza e ultima ciambella
+	var c1 = get_parametric_curve(0.55,5.55,0);
+	var c2 = get_parametric_curve(0.4,5.6,0);
+	var c3 = get_parametric_curve(0.45,5.65,0);
+	var c4 = get_parametric_curve(0.55,5.7,0);
 
-var c1 = get_parametric_curve(0.5,7.25,0);
-var c2 = get_parametric_curve(0,7.3,1);
-var c3 = get_parametric_curve(0.7,7.35,0);
+	var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0]]);
+	var outUp13 = COLOR([0,0,0])(MAP(cs1)(domain));
 
-var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0]]);
-var outUp = COLOR([0,0,0])(MAP(cs1)(domain));
-DRAW(outUp);
+	var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1]]);
+	var outUp14 = COLOR([0,0,0])(MAP(cs2)(domain));
 
-var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1]]);
-var outUp = COLOR([0,0,0])(MAP(cs2)(domain));
-DRAW(outUp);
+	var corpo1 = STRUCT([outciambella_dal_basso,outciambella_dal_basso2,outUp11,outUp12,outUp13,outUp14]);
 
-//tappo finale
 
-var cs1 = BEZIER(S1)([c3[0],c3[1]]);
-var outUp = COLOR([0,0,0])(MAP(cs1)(domain));
-DRAW(outUp);
+	var c1 = get_parametric_curve(0.55,5.7,0);
+	var c2 = get_parametric_curve(0.3,7,1);
+
+	var cs1 = BEZIER(S1)([c1[0],c2[0]]);
+	var outUp15 = COLOR([1,1,0.82])(MAP(cs1)(domain));
+
+	var cs2 = BEZIER(S1)([c1[1],c2[1]]);
+	var outUp16 = COLOR([1,1,0.82])(MAP(cs2)(domain));
+
+	//tappo superiore
+
+	var cs1 = BEZIER(S1)([c2[0],c2[1]]);
+	var outUp17 = COLOR([1,1,0.82])(MAP(cs1)(domain));
+
+	//piccolo bordo
+
+
+	var c1 = get_parametric_curve(0.55,7,0);
+	var c2 = get_parametric_curve(0.55,7,0);
+	//var c3 = get_parametric_curve(0.1,6.5,0);
+
+	var cs1 = BEZIER(S1)([c1[0],c2[0]]);
+	var outUp18 = COLOR([1,1,0.82])(MAP(cs1)(domain));
+
+	var cs2 = BEZIER(S1)([c1[1],c2[1]]);
+	var outUp19 =COLOR([1,1,0.82])( MAP(cs2)(domain));
+
+	var corpo2 = STRUCT([outUp15,outUp16,outUp17,outUp18,outUp19]);
+
+	//sotto_la_testa_del_re
+
+	//prima cupoletta
+
+	var c1 = get_parametric_curve(0.5,7.0,0);
+	var c2 = get_parametric_curve(0.1,7.15,1);
+	var c3 = get_parametric_curve(0.5,7.25,0);
+
+	var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0]]);
+	var outUpCupola1 = COLOR([0,0,0])(MAP(cs1)(domain));
+
+	var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1]]);
+	var outUpCupola2 = COLOR([0,0,0])(MAP(cs2)(domain));
+
+	//seconda cupoletta
+
+	var c1 = get_parametric_curve(0.5,7.25,0);
+	var c2 = get_parametric_curve(0,7.3,1);
+	var c3 = get_parametric_curve(0.7,7.35,0);
+
+	var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0]]);
+	var outUpCupola3 = COLOR([0,0,0])(MAP(cs1)(domain));
+
+	var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1]]);
+	var outUpCupola4 = COLOR([0,0,0])(MAP(cs2)(domain));
+
+
+
+	//tappo finale
+
+	var cs1 = BEZIER(S1)([c3[0],c3[1]]);
+	var outUpTappo = COLOR([0,0,0])(MAP(cs1)(domain));
+
+	var corpo3 = STRUCT([outUpCupola1,outUpCupola2,outUpCupola3,outUpCupola4,outUpTappo]);
 
 	var get_croce = function (){
 
@@ -453,6 +439,7 @@ DRAW(outUp);
 
 	var croce = get_croce();
 	croce = T([0,1,2])([0.7,1.1,6.8])(croce);
-	DRAW(croce);
+	var scmodel = STRUCT([first_piece,second_piece,third_piece,corpo1,corpo2,corpo3,croce]);
 
+	DRAW(scmodel);
 
