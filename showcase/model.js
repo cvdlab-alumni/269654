@@ -267,25 +267,25 @@ DRAW(outUp);
 					var domain = INTERVALS(1)(20);
 					var controlpoints = [[1,0,0],[1.6,0,0],[0,-0.5,0],[0,0.5,0]];
 					var curveMapping1 = CUBIC_HERMITE(S0)(controlpoints);
-					var curve1 = COLOR([0,0,0])(MAP(curveMapping1)(domain));
+					var curve1 = MAP(curveMapping1)(domain);
 
 					//parte piccola
 					var controlpoints = [[1.2,1,0],[1.4,1,0],[0,0,0],[0,0,0]];
 					var curveMapping2 = CUBIC_HERMITE(S0)(controlpoints);
-					var curve2 = COLOR([0,0,0])(MAP(curveMapping2)(domain));
+					var curve2 = MAP(curveMapping2)(domain);
 
 					//diagonale destra
 					var domain = INTERVALS(1)(20);
 
 					var controlpoints = [[1.6,0,0],[1.4,1,0],[-0.5,0,0],[0.5,0,0]];
 					var curveMappingD = CUBIC_HERMITE(S0)(controlpoints);
-					var curve3 = COLOR([0,0,0])(MAP(curveMappingD)(domain));
+					var curve3 =MAP(curveMappingD)(domain);
 
 
 					//diagonale sinistra
 					var controlpoints = [[1,0,0],[1.2,1,0],[0.5,0,0],[-0.5,0,0]];
 					var curveMappingS = CUBIC_HERMITE(S0)(controlpoints);
-					var curve4 = COLOR([0,0,0])(MAP(curveMappingS)(domain));
+					var curve4 = MAP(curveMappingS)(domain);
 
 					//stessi punti traslati in alto
 
@@ -293,56 +293,56 @@ DRAW(outUp);
 					var domain = INTERVALS(1)(20);
 					var controlpoints = [[1,0,0.2],[1.6,0,0.2],[0,-0.5,0],[0,0.5,0]];
 					var curveMapping3 = CUBIC_HERMITE(S0)(controlpoints);
-					var curve5 = COLOR([0,0,0])(MAP(curveMapping3)(domain));
+					var curve5 = MAP(curveMapping3)(domain);
 
 					//parte piccola
 					var controlpoints = [[1.2,1,0.2],[1.4,1,0.2],[0,0,0],[0,0,0]];
 					var curveMapping4 = CUBIC_HERMITE(S0)(controlpoints);
-					var curve6 = COLOR([0,0,0])(MAP(curveMapping4)(domain));
+					var curve6 = MAP(curveMapping4)(domain);
 
 					//diagonale destra
 					var domain = INTERVALS(1)(20);
 
 					var controlpoints = [[1.6,0,0.2],[1.4,1,0.2],[-0.5,0,0],[0.5,0,0]];
 					var curveMappingD1 = CUBIC_HERMITE(S0)(controlpoints);
-					var curve7 = COLOR([0,0,0])(MAP(curveMappingD1)(domain));
+					var curve7 =MAP(curveMappingD1)(domain);
 					//DRAW(curve);
 
 					//diagonale sinistra
 					var controlpoints = [[1,0,0.2],[1.2,1,0.2],[0.5,0,0],[-0.5,0,0]];
 					var curveMappingS1 = CUBIC_HERMITE(S0)(controlpoints);
-					var curve8 = COLOR([0,0,0])(MAP(curveMappingS1)(domain));
+					var curve8 = MAP(curveMappingS1)(domain);
 
 					//chiusure laterali e riempimenti
 
 					var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(14)]);
 					var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMapping1 ,curveMapping2,[0,0,0],[0,0,0]]);
-					var outchiusuraBassa1= COLOR([1,1,0.82])(MAP(sur_chiusura1)(domain));
+					var outchiusuraBassa1= MAP(sur_chiusura1)(domain);
 
 
 					var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(14)]);
 					var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMapping3 ,curveMapping4,[0,0,0],[0,0,0]]);
-					var outchiusuraBassa2= COLOR([1,1,0.82])(MAP(sur_chiusura1)(domain));
+					var outchiusuraBassa2= MAP(sur_chiusura1)(domain);
 
 
 					var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(14)]);
 					var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMapping1 ,curveMapping3,[0,0,0],[0,0,0]]);
-					var outchiusuraBassa3= COLOR([1,1,0.82])(MAP(sur_chiusura1)(domain));
+					var outchiusuraBassa3= MAP(sur_chiusura1)(domain);
 
 					var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(14)]);
 					var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMapping2 ,curveMapping4,[0,0,0],[0,0,0]]);
-					var outchiusuraBassa4= COLOR([1,1,0.82])(MAP(sur_chiusura1)(domain));
+					var outchiusuraBassa4= MAP(sur_chiusura1)(domain);
 
 					var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(14)]);
 					var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMappingD ,curveMappingD1,[0,0,0],[0,0,0]]);
-					var outchiusuraBassa5= COLOR([1,1,0.82])(MAP(sur_chiusura1)(domain));
+					var outchiusuraBassa5= MAP(sur_chiusura1)(domain);
 
 					var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(14)]);
 					var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMappingS ,curveMappingS1,[0,0,0],[0,0,0]]);
-					var outchiusuraBassa6= COLOR([1,1,0.82])(MAP(sur_chiusura1)(domain));
+					var outchiusuraBassa6= MAP(sur_chiusura1)(domain);
 					
-					var piece_of_cross = STRUCT([	outchiusuraBassa1,outchiusuraBassa2,outchiusuraBassa3,
-																				outchiusuraBassa4,outchiusuraBassa5,outchiusuraBassa6]);
+					var piece_of_cross = COLOR([1,1,0.82])(STRUCT([outchiusuraBassa1,outchiusuraBassa2,outchiusuraBassa3,
+																				outchiusuraBassa4,outchiusuraBassa5,outchiusuraBassa6]));
 					return piece_of_cross;
 				}
 
@@ -359,73 +359,73 @@ DRAW(outUp);
 			var domain = INTERVALS(1)(20);
 			var controlpoints = [[1,0,0],[1.6,0,0],[0,-0.5,0],[0,0.5,0]];
 			var curveMapping1 = CUBIC_HERMITE(S0)(controlpoints);
-			var curve1 = COLOR([0,0,0])(MAP(curveMapping1)(domain));
+			var curve1 = MAP(curveMapping1)(domain);
 
 			var controlpoints = [[1.2,0.3,0],[1.4,0.3,0],[0,0,0],[0,0,0]];
 			var curveMapping2 = CUBIC_HERMITE(S0)(controlpoints);
-			var curve2 = COLOR([0,0,0])(MAP(curveMapping2)(domain));
+			var curve2 = MAP(curveMapping2)(domain);
 
 			//diagonale sinistra
 			var controlpoints = [[1.2,0.3,0],[1,0,0],[0.5,0,0],[-0.5,0,0]];
 			var curveMappingS = CUBIC_HERMITE(S0)(controlpoints);
-			var curve3 = COLOR([0,0,0])(MAP(curveMappingS)(domain));
+			var curve3 = MAP(curveMappingS)(domain);
 
 			var controlpoints = [[1.4,0.3,0],[1.6,0,0],[-0.5,0,0],[0.5,0,0]];
 			var curveMappingD = CUBIC_HERMITE(S0)(controlpoints);
-			var curve4 = COLOR([0,0,0])(MAP(curveMappingD)(domain));
+			var curve4 = MAP(curveMappingD)(domain);
 
 			//stessi punti traslati in alto
 
 			var domain = INTERVALS(1)(20);
 			var controlpoints = [[1,0,0.2],[1.6,0,0.2],[0,-0.5,0],[0,0.5,0]];
 			var curveMapping3 = CUBIC_HERMITE(S0)(controlpoints);
-			var curve5 = COLOR([0,0,0])(MAP(curveMapping3)(domain));
+			var curve5 = MAP(curveMapping3)(domain);
 
 			var controlpoints = [[1.2,0.3,0.2],[1.4,0.3,0.2],[0,0,0],[0,0,0]];
 			var curveMapping4 = CUBIC_HERMITE(S0)(controlpoints);
-			var curve6 = COLOR([0,0,0])(MAP(curveMapping4)(domain));
+			var curve6 = MAP(curveMapping4)(domain);
 
 			//diagonale sinistra
 			var controlpoints = [[1.2,0.3,0.2],[1,0,0.2],[0.5,0,0],[-0.5,0,0]];
 			var curveMappingS1 = CUBIC_HERMITE(S0)(controlpoints);
-			var curve7 = COLOR([0,0,0])(MAP(curveMappingS1)(domain));
+			var curve7 = MAP(curveMappingS1)(domain);
 
 			var controlpoints = [[1.4,0.3,0.2],[1.6,0,0.2],[-0.5,0,0],[0.5,0,0]];
 			var curveMappingD1 = CUBIC_HERMITE(S0)(controlpoints);
-			var curve8 = COLOR([0,0,0])(MAP(curveMappingD1)(domain));
+			var curve8 = MAP(curveMappingD1)(domain);
 
 
 			//chiusure laterali e riempimenti
 
 			var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(14)]);
 			var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMapping1 ,curveMapping2,[0,0,0],[0,0,0]]);
-			var outchiusuraBassa1= COLOR([1,1,0.82])(MAP(sur_chiusura1)(domain));
+			var outchiusuraBassa1= MAP(sur_chiusura1)(domain);
 
 
 			var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(14)]);
 			var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMapping3 ,curveMapping4,[0,0,0],[0,0,0]]);
-			var outchiusuraBassa2= COLOR([1,1,0.82])(MAP(sur_chiusura1)(domain));
+			var outchiusuraBassa2= MAP(sur_chiusura1)(domain);
 
 
 			var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(14)]);
 			var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMapping1 ,curveMapping3,[0,0,0],[0,0,0]]);
-			var outchiusuraBassa3= COLOR([1,1,0.82])(MAP(sur_chiusura1)(domain));
+			var outchiusuraBassa3= MAP(sur_chiusura1)(domain);
 
 			var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(14)]);
 			var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMapping2 ,curveMapping4,[0,0,0],[0,0,0]]);
-			var outchiusuraBassa4= COLOR([1,1,0.82])(MAP(sur_chiusura1)(domain));
+			var outchiusuraBassa4= MAP(sur_chiusura1)(domain);
 
 			var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(14)]);
 			var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMappingD ,curveMappingD1,[0,0,0],[0,0,0]]);
-			var outchiusuraBassa5= COLOR([1,1,0.82])(MAP(sur_chiusura1)(domain));
+			var outchiusuraBassa5= MAP(sur_chiusura1)(domain);
 
 			var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(14)]);
 			var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMappingS ,curveMappingS1,[0,0,0],[0,0,0]]);
-			var outchiusuraBassa6= COLOR([1,1,0.82])(MAP(sur_chiusura1)(domain));
+			var outchiusuraBassa6= MAP(sur_chiusura1)(domain);
 				
-			var piece_of_cross = STRUCT([	outchiusuraBassa1,outchiusuraBassa2,outchiusuraBassa3,
+			var piece_of_cross = COLOR([1,1,0.82])(STRUCT([	outchiusuraBassa1,outchiusuraBassa2,outchiusuraBassa3,
 																			outchiusuraBassa4,outchiusuraBassa5,outchiusuraBassa6
-																			]);
+																			]));
 
 			return piece_of_cross;
 
