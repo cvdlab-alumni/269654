@@ -1,4 +1,34 @@
+### Introduction 
 
+![image 1](https://github.com/fruitjem/grafica-computazionale/raw/master/images/taglio.png)
+
+Villa Badoer is a villa in Fratta Polesine in the Veneto region of northern Italy. It was designed in 1556 by Andrea Palladio for the Venetian noble Francesco Badoer, and built between 1557 and 1563, on the site of a medieval castle which guarded a bridge across a navigable canal. This was the first time Palladio used his fully developed temple pediment in the facade of a villa. Villa Badoer has been part since 1996 of the UNESCO World Heritage Site "City of Vicenza and the Palladian Villas of the Veneto". The building is open to the public and one of the wings houses the National archeological museum of Fratta Polesine, opened in 2009.
+
+###History
+
+![image 1](https://github.com/fruitjem/grafica-computazionale/raw/master/images/stampa-del-costa.jpg)
+
+In 1554, on the southern border of the Venetian Republic’s territories, in the flat and foggy country of Polesine, Palladio designed a villa for the Venetian noble Francesco Badoer, intended to become the epicentre of the vast agricultural estate of almost five hundred fields that he had inherited six years previously. Constructed and inhabited in 1556, the villa therefore functioned for the management of the fields and was simultaneously a visible sign of the “feudal” presence, so to speak, of Badoer in the territory: it is not coincidental that the building rises on the site of an ancient medieval castle.Palladio succeeded in uniting within one effective synthesis these dual meanings, joining the majestic manor house to the two barchesse (farm wings) bent into semicircles, which screen the stables and other agricultural annexes.
+
+###The project by Palladio
+
+![image 3](https://github.com/fruitjem/grafica-computazionale/raw/master/images/foto_storica.png) 
+
+There are no surviving drawings by Palladio relating to Villa Badoer, nor any building accounts, except those published by the architect in his I quattro libri dell'architettura (1570). Probably as a result of exploiting the substructures of the medieval castle, the manor house of the villa rises on a high basement, and recalls illustrious precedents like the Villa Medici at Poggio a Caiano by Giuliano da Sangallo, and the not far distant Villa dei Vescovi at Luvigliano by Giovanni Maria Falconetto. Building on the old foundations saved money, and gave a slightly raised setting to the building. This manoeuvre rendered necessary a scenographic staircase of several flights leading to the front door of the villa, the main descending to the courtyard and the two lateral ones connecting with the gable-ends of the barchesse. Thus, the ensemble recalls the structures of an antique, terraced temple complex. The very elegant curvilinear barchesse are the only ones that were actually realised by Palladio from the many projected (for example, those for the Villa Mocenigo on the Brenta, the Villa Thiene at Cicogna or the Villa Trissino at Meledo) and their shape — as Palladio himself writes — recalls arms opening to receive the visitor: the relevant antique source was very probably the exedrae of the Temple of Augustus in Rome. These originally housed agricultural activities, for this was a working villa, like Villa Emo and most of the villas by Palladio. Unusually among Palladio's completed works, the wings here do not actually touch the villa, and they are set slightly in front of it. Vasari thought that they were beautiful, and even fantastic. On the barchesse Palladio used the Tuscan order, appropriate to their utilitarian function and for the opportunity they afforded of realising very broad intercolumniations which would not impede carriage access. Instead, the villa’s loggia displays an elegant Ionic order, to emphasise its residential, manorial status. The visual focus of the entire complex was centred precisely on the dominant axis of the great triangular pediment supported by Ionic columns, which bears the family arms, such that the villa’s flanks and rear are absolutely unarticulated and present a simply utilitarian aspect. This was the first time Palladio used his fully developed temple pediment in the facade of a villa. Moreover, the distributive structure of the manorial house reveals Palladio’s usual organisation into a vertical axis, with service rooms occupying the basement storey, the patron’s habitation on the piano nobile and a granary in the attic. The plan and elevation of Villa Badoer presented in Palladio's woodcuts in the Quattro Libri of 1570 is somewhat different from what was really built there. A rear elevation and portico shown in the book were never built, but whether interrupted and not resumed, or curtailed in the course of construction are not known. Puppi suggested "that the omission of the ceremonial features from the back façade had been decided by the patron, who must have thought them unnecessary in confrontation with the empty expanse of open countryside, and with the short extent of his property... on that side.
+
+###My Project 
+
+The project is written in Javascript and using functions written in plasm for 3D modeling of the villa. The villa has been substantially broken down into 3 different objects, ie the outbuildings, the stairway entrance and the villa. For the implementation of the objects mentioned above have been used substantially the following functions plasm:
+
+* SIMPLEX_GRID: for the construction of the stairway and the regular parts of the villa 
+* CUBIC_HERMITE: for the construction of structures with aellindamento curvilinear. 
+* BEZIER: for the construction of curved surfaces. 
+* MAP
+* DOMAIN 
+
+A particular function is widely used for the construction of certain structures such as columns and capitals is get_parametric_curve (x, z, alpha), function that returns the semicircles that will be used as control lines for more complex structures .This function takes as parameters a gap (x), height (z) and an alpha.
+Under the code of that function:
+```
 var get_parametric_curve = function (x,z,alpha){
 	// x = valore della variazione della base di partenza
 	// z = altezza della curva
@@ -36,330 +66,123 @@ var get_parametric_curve = function (x,z,alpha){
 
 		}
 		return curve;
-	}	
+	}
+
+```
+###Snapshot
+The following image shows a snapshot of the villa from above: 
+
+![image4](https://github.com/fruitjem/grafica-computazionale/raw/master/images/screen2.jpg)
+
+Which reflects the floor plan below:
+
+![image 5](https://github.com/fruitjem/grafica-computazionale/raw/master/images/Badoer-Fratta-Polesine-002.jpg)
+
+The following images,rather, show the house complete view from different angles for easy comparison by eye:
+
+Frontal view:
+![image 7](https://github.com/fruitjem/grafica-computazionale/raw/master/images/screen3.jpg)
+
+Lateral views:
+
+![image 8](https://github.com/fruitjem/grafica-computazionale/raw/master/images/screen4.jpg)
+
+![image 9](https://github.com/fruitjem/grafica-computazionale/raw/master/images/screen6.jpg)
+ 
+###Columns
 
 
-var scales = STRUCT([
-	SIMPLEX_GRID([[26],[1.5],[4.5]]),T([1])([-0.4]),
-	SIMPLEX_GRID([[26],[0.4],[4.35]]),T([1])([-0.4]),
-	SIMPLEX_GRID([[26],[0.4],[4.2]]),T([1])([-0.4]),
-	SIMPLEX_GRID([[26],[0.4],[4.05]]),T([1])([-0.4]),
-	SIMPLEX_GRID([[26],[0.4],[3.9]]),T([1])([-0.4]),
-	SIMPLEX_GRID([[26],[0.4],[3.75]]),T([1])([-0.4]),
-	SIMPLEX_GRID([[26],[0.4],[3.6]]),T([1])([-0.4]),
-	SIMPLEX_GRID([[26],[0.4],[3.45]]),T([1])([-0.4]),
-	SIMPLEX_GRID([[26],[0.4],[3.3]]),T([1])([-0.4]),
-	SIMPLEX_GRID([[26],[0.4],[3.15]]),T([1])([-0.4]),
-	SIMPLEX_GRID([[26],[0.4],[3]]),T([1])([-0.4]),	
-	
-	]);
-DRAW(scales);
+For the realization of the column was (as mentioned above) very useful function get_parametric_curve which has allowed to break down a column in many concentric circles of different radius, which subsequently were used as control lines for the realization of surface. With the same function was also created the capital of the column itself.
 
+![image 10](https://github.com/fruitjem/grafica-computazionale/raw/master/images/last.jpg)
 
-var main_piano = T([0,1])([-7,-4.5])(SIMPLEX_GRID([[40],[6],[3.250]]));
-DRAW(main_piano);
+```
+	var crea_colonna = function(){
+	var base_inferiore = SIMPLEX_GRID([[1],[1],[0.2]]);
+	var base_superiore = T([2])([14.1])(SIMPLEX_GRID([[1],[1],[0.2]]));
 
-var second_piano =  T([0,1])([-5,-6.5])(SIMPLEX_GRID([[36],[2],[3.250]]));
-DRAW(second_piano);
-
-var scales1 = STRUCT([	T([1])([-6.9]),
-	SIMPLEX_GRID([[26],[0.375],[3.250]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[3.125]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[3]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[2.875]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[2.750]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[2.625]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[2.5]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[2.375]]),T([1])([-4]),
-	SIMPLEX_GRID([[26],[4],[2.250]])	
-	]);
-
-DRAW(scales1);
-
-var scales2 = STRUCT([T([1])([-13.5]),
-	SIMPLEX_GRID([[26],[0.375],[2.250]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[2.125]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[2]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[1.875]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[1.750]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[1.625]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[1.5]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[1.375]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[1.250]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[1.125]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[1]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[0.875]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[0.750]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[0.625]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[0.5]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[0.375]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[0.250]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[0.125]]),T([1])([-0.375]),
-	SIMPLEX_GRID([[26],[0.375],[0]]),T([1])([-0.375])
-	]);
-
-
-DRAW(scales2);
-
-
-var scale_laterali_sx = STRUCT([T([0,1])([-7,-4.5]),
-	SIMPLEX_GRID([[0.375],[3],[3.250]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[3.125]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[3]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[2.875]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[2.750]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[2.625]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[2.5]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[2.375]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[2.250]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[2.125]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[2]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[1.875]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[1.750]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[1.625]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[1.5]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[1.375]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[1.250]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[1.125]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[1]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[0.875]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[0.750]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[0.625]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[0.5]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[0.375]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[0.250]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[0.125]]),T([0])([-0.375]),
-	SIMPLEX_GRID([[0.375],[3],[0]])	]);
-
-DRAW(scale_laterali_sx);
-
-
-var scale_laterali_dx = STRUCT([T([0,1])([33,-4.5]),
-	SIMPLEX_GRID([[0.375],[3],[3.250]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[3.125]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[3]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[2.875]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[2.750]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[2.625]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[2.5]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[2.375]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[2.250]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[2.125]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[2]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[1.875]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[1.750]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[1.625]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[1.5]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[1.375]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[1.250]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[1.125]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[1]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[0.875]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[0.750]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[0.625]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[0.5]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[0.375]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[0.250]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[0.125]]),T([0])([0.375]),
-	SIMPLEX_GRID([[0.375],[3],[0]])	
-	]);
-
-DRAW(scale_laterali_dx);
-
-
-var corrimano_laterale_sx = function (){
-
-		var capitello = function (){
-			c1 = get_parametric_curve(0.8,0,0);
-			c2 = get_parametric_curve(0.6,0.3,0);
-			c3 = get_parametric_curve(0.3,0.5,0);
-			c4 = get_parametric_curve(0.8,0.9,0);
-			c5 = get_parametric_curve(0.9,1.5,0);
-			c6 = get_parametric_curve(0.9,1.7,0);
+			c1 = get_parametric_curve(0.5,0,0);
+			c2 = get_parametric_curve(0.4,0.05,0);
+			c3 = get_parametric_curve(0.7,0.1,0);
+			c4 = get_parametric_curve(0.4,0.15,0);
+			c5 = get_parametric_curve(0.5,0.2,0);
+			c6 = get_parametric_curve(0.4,0.25,0);
+			c7 = get_parametric_curve(0.7,0.3,0);
+			c8 = get_parametric_curve(0.4,0.35,0);
+			c9 = get_parametric_curve(0.6,0.4,0);
+			c10 = get_parametric_curve(0.7,0.45,0);
+			c11= get_parametric_curve(0.4,0.5,0);
+			c12 = get_parametric_curve(0.4,0.6,0);
+			c13 = get_parametric_curve(0.4,8.6,0);
+			c14 = get_parametric_curve(0.4,13.6,0);
+			c15 = get_parametric_curve(0.4,13.65,0);
+			c16 = get_parametric_curve(0.5,13.7,0);
+			c17 = get_parametric_curve(0.6,13.75,0);
+			c18 = get_parametric_curve(0.7,13.8,0);
+			c19 = get_parametric_curve(0.4,13.85,0);
+			c20 = get_parametric_curve(0.5,13.9,0);
+			c21 = get_parametric_curve(0.6,13.95,0);
+			c22 = get_parametric_curve(0.7,14,0);
+			c23= get_parametric_curve(0.5,14.05,0);
+			c24 = get_parametric_curve(0.4,14.1,0);
+			c25 = get_parametric_curve(0.4,14.1,0);
 			
-			var domain = PROD1x1([INTERVALS(1)(5),INTERVALS(1)(5)]);
+			
+			var domain = PROD1x1([INTERVALS(1)(30),INTERVALS(1)(30)]);
 
-			var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0],c5[0],c6[0]]);
+			var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0],c5[0],c6[0],c7[0],c8[0],c9[0],c10[0],c11[0],c12[0],c13[0],c14[0],c15[0],c16[0],c17[0],c18[0],c19[0],c20[0],c21[0],c22[0],c23[0],c24[0],c25[0]]);
 			var outUp1 = MAP(cs1)(domain);
 
-			var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1],c5[1],c6[1]]);
+			var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1],c5[1],c6[1],c7[1],c8[1],c9[1],c10[1],c11[1],c12[1],c13[1],c14[1],c15[1],c16[1],c17[1],c18[1],c19[1],c20[1],c21[1],c22[1],c23[1],c24[1],c25[1]]);
 			var outUp2 = MAP(cs2)(domain);
 
 			var risultato = STRUCT([outUp1,outUp2]);
 
-			return risultato;
-		}
+			var crea_anellino = function(){
+				c1 = get_parametric_curve(0.7,0,0);
+				c2 = get_parametric_curve(0.8,0.1,0);
+				c3 = get_parametric_curve(0.9,0.3,0);
+				c4 = get_parametric_curve(0.95,0.45,0);
+				c5 = get_parametric_curve(0.99,0.5,0);
+				c6 = get_parametric_curve(0.9,0.6,0);
+				c7 = get_parametric_curve(0.8,0.8,0);
+				c8 = get_parametric_curve(0.7,1,0);
 
-	//var p1 = SIMPLEX_GRID([[0.5],[2],[0.1]]);
-	//var p2 = SIMPLEX_GRID([[0.5],[2],[-2,0.1]]);
-	var cap1  = capitello();
-	var cap2 = capitello();
-	var cap3 = capitello();
-	var cap4 = capitello();
-	//var cap5 = capitello();
+			var domain = PROD1x1([INTERVALS(1)(30),INTERVALS(1)(30)]);
 
-	capitelli=STRUCT([T([1])([-0.35]),cap1,T([1])([1.2]),cap2,T([1])([1.2]),cap3,T([1])([1.2]),cap4,T([1])([1.2])]);//,cap5]);
-
-
-
-	var p1 = SIMPLEX_GRID([[0.5],[4.5],[0.2]]);
-	var p2 = SIMPLEX_GRID([[0.5],[4.5],[-1.7,0.2]]);
-
-	var stru = STRUCT([T([0])([1.7]),p2,T([2])([-0.2]),p1]);
-	
-
-	var corrimano = STRUCT([stru,capitelli]);
-	return corrimano;
-}
-
-var corrimanosx = T([0,1,2])([0,-8.2,3.45])(R([0,1])(PI/2)(corrimano_laterale_sx()));
-DRAW(corrimanosx);
-
-
-
-
-var corrimano_verticale_sx = function (){
-
-		var capitello = function (){
-			c1 = get_parametric_curve(0.8,0,0);
-			c2 = get_parametric_curve(0.6,0.3,0);
-			c3 = get_parametric_curve(0.3,0.5,0);
-			c4 = get_parametric_curve(0.8,0.9,0);
-			c5 = get_parametric_curve(0.9,1.5,0);
-			c6 = get_parametric_curve(0.9,1.7,0);
-			
-			var domain = PROD1x1([INTERVALS(1)(5),INTERVALS(1)(5)]);
-
-			var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0],c5[0],c6[0]]);
+			var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0],c5[0],c6[0],c7[0],c8[0]]);
 			var outUp1 = MAP(cs1)(domain);
 
-			var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1],c5[1],c6[1]]);
+			var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1],c5[1],c6[1],c7[1],c8[1]]);
 			var outUp2 = MAP(cs2)(domain);
 
-			var risultato = STRUCT([outUp1,outUp2]);
+			var cs3 = BEZIER(S1)([c1[0],c1[1]]);
+			var outUp3 = MAP(cs3)(domain);
 
+			var cs4 = BEZIER(S1)([c8[0],c8[1]]);
+			var outUp4 = MAP(cs4)(domain);
+
+
+
+			var risultato = R([1,2])(PI/2)(STRUCT([outUp1,outUp2,outUp3,outUp4]));
 			return risultato;
-		}
 
-	//var p1 = SIMPLEX_GRID([[0.5],[2],[0.1]]);
-	//var p2 = SIMPLEX_GRID([[0.5],[2],[-2,0.1]]);
-	var cap1  = capitello();
-	
+			}
+			var anellino1 = T([0,1,2])([0.5,1.5,12.8])(crea_anellino());
+			var anellino2 = T([0,1,2])([-0.5,1.5,12.8])(crea_anellino());
 
-	capitelli=STRUCT([T([1])([0.3]),cap1]);
-
-
-
-	var p1 = SIMPLEX_GRID([[0.5],[2],[0.2]]);
-	var p2 = SIMPLEX_GRID([[0.5],[2],[-1.7,0.2]]);
-
-	var stru = STRUCT([T([0])([1.7]),p2,T([2])([-0.2]),p1]);
-	
-
-	var corrimano = STRUCT([stru,capitelli]);
-	return corrimano;
-}
-
-var corrimano_verticale_sx = T([0,1,2])([-6.7,-6.5,3.45])(corrimano_verticale_sx());
-DRAW(corrimano_verticale_sx);
-
-
-
-
-////////////////////////////////////
-var corrimano_laterale_sx1 = function (){
-
-		var capitello = function (){
-			c1 = get_parametric_curve(0.8,0,0);
-			c2 = get_parametric_curve(0.6,0.3,0);
-			c3 = get_parametric_curve(0.3,0.5,0);
-			c4 = get_parametric_curve(0.8,0.9,0);
-			c5 = get_parametric_curve(0.9,1.5,0);
-			c6 = get_parametric_curve(0.9,1.7,0);
 			
-			var domain = PROD1x1([INTERVALS(1)(5),INTERVALS(1)(5)]);
 
-			var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0],c5[0],c6[0]]);
-			var outUp1 = MAP(cs1)(domain);
-
-			var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1],c5[1],c6[1]]);
-			var outUp2 = MAP(cs2)(domain);
-
-			var risultato = STRUCT([outUp1,outUp2]);
-
-			return risultato;
-		}
-
-	//var p1 = SIMPLEX_GRID([[0.5],[2],[0.1]]);
-	//var p2 = SIMPLEX_GRID([[0.5],[2],[-2,0.1]]);
-	var cap1  = capitello();
-	var cap2 = capitello();
-	
-
-	capitelli=STRUCT([T([1])([-0.3]),cap1,T([1])([1.2]),cap2]);
-	var p1 = SIMPLEX_GRID([[0.5],[2.5],[0.2]]);
-	var p2 = SIMPLEX_GRID([[0.5],[2.5],[-1.7,0.2]]);
-
-	var stru = STRUCT([T([0])([1.7]),p2,T([2])([-0.2]),p1]);
-	
-
-	var corrimano = STRUCT([stru,capitelli]);
-	return corrimano;
+	var colonna = COLOR([1,1,0.860])(STRUCT([anellino1,anellino2,risultato,T([0,1,2])([1.5,0.5,-0.2]),base_inferiore,base_superiore]));
+	return colonna ;
 }
 
+```
 
-var corrimano_laterale_sx1 = T([0,1,2])([-4.5,-6.2,3.45])(R([0,1])(PI/2)(corrimano_laterale_sx1()));
-DRAW(corrimano_laterale_sx1);
+with the same function that created the various capitals of the handrail:
 
-////////////////////
+![image 11](https://github.com/fruitjem/grafica-computazionale/raw/master/images/screen7.jpg)
 
+link to source code:
 
-
-var corrimano_verticale_centrale_sx = function (){
-
-		var capitello = function (){
-			c1 = get_parametric_curve(0.8,0,0);
-			c2 = get_parametric_curve(0.6,0.3,0);
-			c3 = get_parametric_curve(0.3,0.5,0);
-			c4 = get_parametric_curve(0.8,0.9,0);
-			c5 = get_parametric_curve(0.9,1.5,0);
-			c6 = get_parametric_curve(0.9,1.7,0);
-			
-			var domain = PROD1x1([INTERVALS(1)(5),INTERVALS(1)(5)]);
-
-			var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0],c5[0],c6[0]]);
-			var outUp1 = MAP(cs1)(domain);
-
-			var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1],c5[1],c6[1]]);
-			var outUp2 = MAP(cs2)(domain);
-
-			var risultato = STRUCT([outUp1,outUp2]);
-
-			return risultato;
-		}
-
-	//var p1 = SIMPLEX_GRID([[0.5],[2],[0.1]]);
-	//var p2 = SIMPLEX_GRID([[0.5],[2],[-2,0.1]]);
-	var cap1  = capitello();
-	var cap2 = capitello();
-	var cap3 = capitello();
-	var cap4 = capitello();
-	
-
-	capitelli=STRUCT([T([1,2])([-0.5,0.3]),cap1,T([1,2])([1.2,0.5]),cap2,T([1,2])([1.2,0.5]),cap3]);//,cap5]);
-
-
-
-	var p1 = SIMPLEX_GRID([[0.5],[4.5],[0.6]]);
-	var p2 = SIMPLEX_GRID([[0.5],[4.5],[-1.7,0.2]]);
-
-	var stru = STRUCT([T([0])([1.7]),R([1,2])(20*(PI/180)),p2,T([2])([-0.2]),p1]);
-	
-
-	var corrimano = STRUCT([stru,capitelli]);
-	return corrimano;
-}
-
-var corrimano_verticale_centrale_sx = T([0,1,2])([-2.3,-3,3])(corrimano_verticale_centrale_sx());
-DRAW(corrimano_verticale_centrale_sx);
-
+ 
