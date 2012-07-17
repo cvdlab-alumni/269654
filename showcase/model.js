@@ -437,8 +437,9 @@ var get_parametric_curve = function (x,z,alpha){
 }
 
 
-	var croce = get_croce();
-	croce = T([0,1,2])([0.7,1.1,6.8])(croce);
+	var croce = croce();
+	get_croce = T([0,1,2])([0.7,1.1,6.8])(croce);
+	
 	var scmodel = STRUCT([first_piece,second_piece,third_piece,corpo1,corpo2,corpo3,croce]);
 
 

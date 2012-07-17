@@ -1,0 +1,292 @@
+var crea_edificio_esterno = function (){
+//tetto
+
+var domain = INTERVALS(1)(20);
+
+
+//linea tetto S1
+var controlpoints = [[12,0,5.5],[36,24,5.5],[0,36,0],[36,0,0]];
+var curveMappingS1 = CUBIC_HERMITE(S0)(controlpoints);
+var curve1 = MAP(curveMappingS1)(domain);
+//DRAW(curve1);
+
+//linea muro sotto al tetto0 z1
+var controlpoints = [[12,0,4.5],[36,24,4.5],[0,36,0],[36,0,0]];
+var curveMappingz1 = CUBIC_HERMITE(S0)(controlpoints);
+var curve1 = MAP(curveMappingS1)(domain);
+//DRAW(curve1);
+
+
+//linea muro sotto al tetto riempimento colonne s2
+var controlpoints = [[0,0,4.5],[36,36,4.5],[0,56,0],[56,0,0]];
+var curveMappingz3 = CUBIC_HERMITE(S0)(controlpoints);
+var curve2 = MAP(curveMappingz3)(domain);
+//DRAW(curve2);
+
+
+//linea tetto s2
+var controlpoints = [[0,0,5.5],[36,36,5.5],[0,56,0],[56,0,0]];
+var curveMappingS2 = CUBIC_HERMITE(S0)(controlpoints);
+var curve2 = MAP(curveMappingS2)(domain);
+//DRAW(curve2);
+
+//linea tetto s3
+var controlpoints = [[6,2,7.5],[34,30,7.5],[0,48,0],[48,0,0]];
+var curveMappingS3 = CUBIC_HERMITE(S0)(controlpoints);
+var curve3 = MAP(curveMappingS3)(domain);
+//DRAW(curve3);
+
+//linea s4
+var controlpoints = [[0,0,5.5],[12,0,5.5],[0,0,0],[0,0,0]];
+var curveMappingS4 = CUBIC_HERMITE(S0)(controlpoints);
+var curve4 = MAP(curveMappingS4)(domain);
+//DRAW(curve3);
+
+//linea s5
+var controlpoints = [[6,2,7.5],[12,0,5.5],[0,0,0],[0,0,0]];
+var curveMappingS5 = CUBIC_HERMITE(S0)(controlpoints);
+var curve5 = MAP(curveMappingS5)(domain);
+//DRAW(curve3);
+
+//linea s6
+var controlpoints = [[36,24,5.5],[36,36,5.5],[0,0,0],[0,0,0]];
+var curveMappingS6 = CUBIC_HERMITE(S0)(controlpoints);
+var curve6 = MAP(curveMappingS6)(domain);
+//DRAW(curve3);
+
+//linea s7
+var controlpoints = [[34,30,7.5],[36,36,5.5],[0,0,0],[0,0,0]];
+var curveMappingS7 = CUBIC_HERMITE(S0)(controlpoints);
+var curve7 = MAP(curveMappingS7)(domain);
+//DRAW(curve3);
+
+//linea s10 pavimento
+var controlpoints = [[12,0,0],[36,24,0],[0,36,0],[36,0,0]];
+var curveMappingS10 = CUBIC_HERMITE(S0)(controlpoints);
+var curve10 = MAP(curveMappingS10)(domain);
+
+
+//riempimenti s1
+
+var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(20)]);
+var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMappingS1 ,curveMappingS3,[0,0,0],[0,0,0]]);
+var outchiusuraBassa1= MAP(sur_chiusura1)(domain);
+
+//DRAW(outchiusuraBassa1);
+
+
+
+var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMappingS2 ,curveMappingS3,[0,0,0],[0,0,0]]);
+var outchiusuraBassa2= MAP(sur_chiusura1)(domain);
+
+//DRAW(outchiusuraBassa2);
+
+
+
+var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMappingS4 ,curveMappingS5,[0,0,0],[0,0,0]]);
+var outchiusuraBassa3= MAP(sur_chiusura1)(domain);
+
+//DRAW(outchiusuraBassa3);
+
+var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMappingS6 ,curveMappingS7,[0,0,0],[0,0,0]]);
+var outchiusuraBassa4= MAP(sur_chiusura1)(domain);
+
+//DRAW(outchiusuraBassa3);
+
+var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMappingS1 ,curveMappingz1,[0,0,0],[0,0,0]]);
+var outchiusuraBassa= MAP(sur_chiusura1)(domain);
+
+var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMappingz1 ,curveMappingz3,[0,0,0],[0,0,0]]);
+var outchiusuraBassa5= MAP(sur_chiusura1)(domain);
+
+
+
+var tetto_edificio_esterno = STRUCT([outchiusuraBassa1,outchiusuraBassa2,outchiusuraBassa3,outchiusuraBassa4,outchiusuraBassa5,outchiusuraBassa]);
+
+
+//DRAW(tetto_edificio_esterno);
+
+
+var domain = INTERVALS(1)(20);
+
+//linea esterna edificio s2
+var controlpoints = [[0,0,0],[36,36,0],[0,56,0],[56,0,0]];
+var curveMappingS8 = CUBIC_HERMITE(S0)(controlpoints);
+var curve2 = MAP(curveMappingS8)(domain);
+//DRAW(curve2);
+
+//linea esterna edificio S1
+var controlpoints = [[12,0,0],[36,24,0],[0,36,0],[36,0,0]];
+var curveMappingS9 = CUBIC_HERMITE(S0)(controlpoints);
+var curve1 = MAP(curveMappingS9)(domain);
+//DRAW(curve1);
+
+var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(20)]);
+
+var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMappingS8 ,curveMappingS2,[0,0,0],[0,0,0]]);
+var outchiusuraBassaX= MAP(sur_chiusura1)(domain);
+
+var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMappingS8 ,curveMappingS9,[0,0,0],[0,0,0]]);
+var outchiusuraBassaY= MAP(sur_chiusura1)(domain);
+
+
+//RAW(outchiusuraBassa5);
+//DRAW(outchiusuraBassa6);
+
+
+
+
+//costruzione facciata edificio esterno 
+
+var b1 = SIMPLEX_GRID([[4],[0.5],[5.5]]);
+var b2 = SIMPLEX_GRID([[-8,4],[0.5],[5.5]]);
+DRAW(b1);
+DRAW(b2);
+
+//linea s6
+var domain = INTERVALS(1)(20);
+
+var controlpoints = [[4,0,2.5],[8,0,2.5],[0,0,6],[0,0,-6]];
+var curveMappingS8 = CUBIC_HERMITE(S0)(controlpoints);
+var curve6 = MAP(curveMappingS8)(domain);
+
+//linea s7
+var controlpoints = [[4,0,5.5],[8,0,5.5],[0,0,0],[0,0,0]];
+var curveMappingS9 = CUBIC_HERMITE(S0)(controlpoints);
+var curve7 = MAP(curveMappingS9)(domain);
+
+var domain = PROD1x1([INTERVALS(1)(20),INTERVALS(1)(20)]);
+var sur_chiusura1 = CUBIC_HERMITE(S1)([curveMappingS8 ,curveMappingS9,[0,0,0],[0,0,0]]);
+var outchiusuraBassa6= MAP(sur_chiusura1)(domain);
+
+//DRAW(outchiusuraBassa6);
+
+var facciata_edificio_esterno = STRUCT([b1,b2,outchiusuraBassa6]);
+//DRAW(facciata_edificio_esterno);
+
+
+facciata_edificio_esterno2 = T([0,1])([36,24])(R([0,1])(PI/2)(facciata_edificio_esterno));
+
+//DRAW(facciata_edificio_esterno2);
+
+
+//colonna
+
+var get_parametric_curve = function (x,z,alpha){
+	// x = valore della variazione della base di partenza
+	// z = altezza della curva
+	// alpha=1 se ingrandiamo | =0 se rimpiccioliamo 
+	var domain = INTERVALS(1)(30);
+
+	if (alpha == 1 ){
+		//curva inferiore	
+		var controlpoints_down = [[(1-x),1,z],[(3+x),1,z],[0,(-4-(4*x)),0],[0,(4+(4*x)),0]];
+		var curveMapping_dw_1 = CUBIC_HERMITE(S0)(controlpoints_down);
+		var curve_1 = MAP(curveMapping_dw_1)(domain);
+
+		//curva superiore
+		var controlpoints_up = [[(1-x),1,z],[(3+x),1,z],[0,(4+(4*x)),0],[0,(-4-(4*x)),0]];
+		var curveMapping_up_1 = CUBIC_HERMITE(S0)(controlpoints_up);
+		var curve_2 = MAP(curveMapping_up_1)(domain);
+
+		var curve = [curveMapping_dw_1,curveMapping_up_1];
+	}
+	
+	if (alpha == 0) {
+
+		//curva inferiore	
+		var controlpoints_down = [[(1+x),1,z],[(3-x),1,z],[0,(-4+(4*x)),0],[0,(4-(4*x)),0]];
+		var curveMapping_dw_1 = CUBIC_HERMITE(S0)(controlpoints_down);
+		var curve_1 = MAP(curveMapping_dw_1)(domain);
+
+		//curva superiore
+		var controlpoints_up = [[(1+x),1,z],[(3-x),1,z],[0,(4-(4*x)),0],[0,(-4+(4*x)),0]];
+		var curveMapping_up_1 = CUBIC_HERMITE(S0)(controlpoints_up);
+		var curve_2 = MAP(curveMapping_up_1)(domain);
+
+		var curve = [curveMapping_dw_1,curveMapping_up_1];
+
+
+		}
+		return curve;
+	}
+
+
+	var colonna_edificio_esterno = function (){
+			c1 = get_parametric_curve(0.6,0,0);
+			cz1 = get_parametric_curve(0.7,0.1,0);
+			c2 = get_parametric_curve(0.8,0.2,0);
+			c3 = get_parametric_curve(0.8,4.3,0);
+			cz2 = get_parametric_curve(0.7,4.4,0);
+			c4 = get_parametric_curve(0.6,4.5,0);
+			
+			
+			var domain = PROD1x1([INTERVALS(1)(5),INTERVALS(1)(5)]);
+
+			var cs1 = BEZIER(S1)([c1[0],cz1[0],c2[0],c3[0],cz2[0],c4[0]]);
+			var outUp1 = MAP(cs1)(domain);
+
+			var cs2 = BEZIER(S1)([c1[1],cz1[1],c2[1],c3[1],cz2[1],c4[1]]);
+			var outUp2 = MAP(cs2)(domain);
+
+			var colonna = STRUCT([outUp1,outUp2]);
+
+			return colonna;
+		}
+
+		var colonna1 = T([0,1])([9.8,2])(colonna_edificio_esterno());
+		//DRAW(colonna1);
+		
+		var colonna2 = T([0,1])([11,6.2])(colonna_edificio_esterno());
+		//DRAW(colonna2);
+
+
+
+		var colonna3 = T([0,1])([12.7,10])(colonna_edificio_esterno());
+		//DRAW(colonna3);
+
+		
+		var colonna4 = T([0,1])([15,13.3])(colonna_edificio_esterno());
+		//DRAW(colonna4);
+
+		
+		var colonna5 = T([0,1])([17.9,16.5])(colonna_edificio_esterno());
+		//DRAW(colonna5);
+		
+		
+		var colonna6 = T([0,1])([20.9,18.9])(colonna_edificio_esterno());
+		//DRAW(colonna6);
+
+
+
+		var colonna7 = T([0,1])([24.2,20.9])(colonna_edificio_esterno());
+		//DRAW(colonna7);
+
+		
+		var colonna8 = T([0,1])([27.9,22.4])(colonna_edificio_esterno());
+		//DRAW(colonna8);
+
+		var colonna9 = T([0,1])([31.5,23.3])(colonna_edificio_esterno());
+		//DRAW(colonna9);
+
+		var colonne = STRUCT([colonna1,colonna2,colonna3,colonna4,colonna5,colonna6,colonna7,colonna8,colonna9]);
+
+		var edificio = STRUCT([tetto_edificio_esterno,outchiusuraBassa5,outchiusuraBassa6,facciata_edificio_esterno,facciata_edificio_esterno2,colonne,outchiusuraBassaY,outchiusuraBassaX]);
+
+		return edificio
+		
+}
+
+var ed = crea_edificio_esterno();
+
+DRAW(ed);
+
+
+
+
+
+
+
+
+
+	

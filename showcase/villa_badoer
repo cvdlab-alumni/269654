@@ -1,0 +1,365 @@
+
+var get_parametric_curve = function (x,z,alpha){
+	// x = valore della variazione della base di partenza
+	// z = altezza della curva
+	// alpha=1 se ingrandiamo | =0 se rimpiccioliamo 
+	var domain = INTERVALS(1)(30);
+
+	if (alpha == 1 ){
+		//curva inferiore	
+		var controlpoints_down = [[(1-x),1,z],[(3+x),1,z],[0,(-4-(4*x)),0],[0,(4+(4*x)),0]];
+		var curveMapping_dw_1 = CUBIC_HERMITE(S0)(controlpoints_down);
+		var curve_1 = MAP(curveMapping_dw_1)(domain);
+
+		//curva superiore
+		var controlpoints_up = [[(1-x),1,z],[(3+x),1,z],[0,(4+(4*x)),0],[0,(-4-(4*x)),0]];
+		var curveMapping_up_1 = CUBIC_HERMITE(S0)(controlpoints_up);
+		var curve_2 = MAP(curveMapping_up_1)(domain);
+
+		var curve = [curveMapping_dw_1,curveMapping_up_1];
+	}
+	
+	if (alpha == 0) {
+
+		//curva inferiore	
+		var controlpoints_down = [[(1+x),1,z],[(3-x),1,z],[0,(-4+(4*x)),0],[0,(4-(4*x)),0]];
+		var curveMapping_dw_1 = CUBIC_HERMITE(S0)(controlpoints_down);
+		var curve_1 = MAP(curveMapping_dw_1)(domain);
+
+		//curva superiore
+		var controlpoints_up = [[(1+x),1,z],[(3-x),1,z],[0,(4-(4*x)),0],[0,(-4+(4*x)),0]];
+		var curveMapping_up_1 = CUBIC_HERMITE(S0)(controlpoints_up);
+		var curve_2 = MAP(curveMapping_up_1)(domain);
+
+		var curve = [curveMapping_dw_1,curveMapping_up_1];
+
+
+		}
+		return curve;
+	}	
+
+
+var scales = STRUCT([
+	SIMPLEX_GRID([[26],[1.5],[4.5]]),T([1])([-0.4]),
+	SIMPLEX_GRID([[26],[0.4],[4.35]]),T([1])([-0.4]),
+	SIMPLEX_GRID([[26],[0.4],[4.2]]),T([1])([-0.4]),
+	SIMPLEX_GRID([[26],[0.4],[4.05]]),T([1])([-0.4]),
+	SIMPLEX_GRID([[26],[0.4],[3.9]]),T([1])([-0.4]),
+	SIMPLEX_GRID([[26],[0.4],[3.75]]),T([1])([-0.4]),
+	SIMPLEX_GRID([[26],[0.4],[3.6]]),T([1])([-0.4]),
+	SIMPLEX_GRID([[26],[0.4],[3.45]]),T([1])([-0.4]),
+	SIMPLEX_GRID([[26],[0.4],[3.3]]),T([1])([-0.4]),
+	SIMPLEX_GRID([[26],[0.4],[3.15]]),T([1])([-0.4]),
+	SIMPLEX_GRID([[26],[0.4],[3]]),T([1])([-0.4]),	
+	
+	]);
+DRAW(scales);
+
+
+var main_piano = T([0,1])([-7,-4.5])(SIMPLEX_GRID([[40],[6],[3.250]]));
+DRAW(main_piano);
+
+var second_piano =  T([0,1])([-5,-6.5])(SIMPLEX_GRID([[36],[2],[3.250]]));
+DRAW(second_piano);
+
+var scales1 = STRUCT([	T([1])([-6.9]),
+	SIMPLEX_GRID([[26],[0.375],[3.250]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[3.125]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[3]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[2.875]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[2.750]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[2.625]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[2.5]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[2.375]]),T([1])([-4]),
+	SIMPLEX_GRID([[26],[4],[2.250]])	
+	]);
+
+DRAW(scales1);
+
+var scales2 = STRUCT([T([1])([-13.5]),
+	SIMPLEX_GRID([[26],[0.375],[2.250]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[2.125]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[2]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[1.875]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[1.750]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[1.625]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[1.5]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[1.375]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[1.250]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[1.125]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[1]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[0.875]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[0.750]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[0.625]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[0.5]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[0.375]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[0.250]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[0.125]]),T([1])([-0.375]),
+	SIMPLEX_GRID([[26],[0.375],[0]]),T([1])([-0.375])
+	]);
+
+
+DRAW(scales2);
+
+
+var scale_laterali_sx = STRUCT([T([0,1])([-7,-4.5]),
+	SIMPLEX_GRID([[0.375],[3],[3.250]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[3.125]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[3]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[2.875]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[2.750]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[2.625]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[2.5]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[2.375]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[2.250]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[2.125]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[2]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[1.875]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[1.750]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[1.625]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[1.5]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[1.375]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[1.250]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[1.125]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[1]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[0.875]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[0.750]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[0.625]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[0.5]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[0.375]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[0.250]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[0.125]]),T([0])([-0.375]),
+	SIMPLEX_GRID([[0.375],[3],[0]])	]);
+
+DRAW(scale_laterali_sx);
+
+
+var scale_laterali_dx = STRUCT([T([0,1])([33,-4.5]),
+	SIMPLEX_GRID([[0.375],[3],[3.250]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[3.125]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[3]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[2.875]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[2.750]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[2.625]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[2.5]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[2.375]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[2.250]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[2.125]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[2]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[1.875]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[1.750]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[1.625]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[1.5]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[1.375]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[1.250]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[1.125]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[1]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[0.875]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[0.750]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[0.625]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[0.5]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[0.375]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[0.250]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[0.125]]),T([0])([0.375]),
+	SIMPLEX_GRID([[0.375],[3],[0]])	
+	]);
+
+DRAW(scale_laterali_dx);
+
+
+var corrimano_laterale_sx = function (){
+
+		var capitello = function (){
+			c1 = get_parametric_curve(0.8,0,0);
+			c2 = get_parametric_curve(0.6,0.3,0);
+			c3 = get_parametric_curve(0.3,0.5,0);
+			c4 = get_parametric_curve(0.8,0.9,0);
+			c5 = get_parametric_curve(0.9,1.5,0);
+			c6 = get_parametric_curve(0.9,1.7,0);
+			
+			var domain = PROD1x1([INTERVALS(1)(5),INTERVALS(1)(5)]);
+
+			var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0],c5[0],c6[0]]);
+			var outUp1 = MAP(cs1)(domain);
+
+			var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1],c5[1],c6[1]]);
+			var outUp2 = MAP(cs2)(domain);
+
+			var risultato = STRUCT([outUp1,outUp2]);
+
+			return risultato;
+		}
+
+	//var p1 = SIMPLEX_GRID([[0.5],[2],[0.1]]);
+	//var p2 = SIMPLEX_GRID([[0.5],[2],[-2,0.1]]);
+	var cap1  = capitello();
+	var cap2 = capitello();
+	var cap3 = capitello();
+	var cap4 = capitello();
+	//var cap5 = capitello();
+
+	capitelli=STRUCT([T([1])([-0.35]),cap1,T([1])([1.2]),cap2,T([1])([1.2]),cap3,T([1])([1.2]),cap4,T([1])([1.2])]);//,cap5]);
+
+
+
+	var p1 = SIMPLEX_GRID([[0.5],[4.5],[0.2]]);
+	var p2 = SIMPLEX_GRID([[0.5],[4.5],[-1.7,0.2]]);
+
+	var stru = STRUCT([T([0])([1.7]),p2,T([2])([-0.2]),p1]);
+	
+
+	var corrimano = STRUCT([stru,capitelli]);
+	return corrimano;
+}
+
+var corrimanosx = T([0,1,2])([0,-8.2,3.45])(R([0,1])(PI/2)(corrimano_laterale_sx()));
+DRAW(corrimanosx);
+
+
+
+
+var corrimano_verticale_sx = function (){
+
+		var capitello = function (){
+			c1 = get_parametric_curve(0.8,0,0);
+			c2 = get_parametric_curve(0.6,0.3,0);
+			c3 = get_parametric_curve(0.3,0.5,0);
+			c4 = get_parametric_curve(0.8,0.9,0);
+			c5 = get_parametric_curve(0.9,1.5,0);
+			c6 = get_parametric_curve(0.9,1.7,0);
+			
+			var domain = PROD1x1([INTERVALS(1)(5),INTERVALS(1)(5)]);
+
+			var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0],c5[0],c6[0]]);
+			var outUp1 = MAP(cs1)(domain);
+
+			var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1],c5[1],c6[1]]);
+			var outUp2 = MAP(cs2)(domain);
+
+			var risultato = STRUCT([outUp1,outUp2]);
+
+			return risultato;
+		}
+
+	//var p1 = SIMPLEX_GRID([[0.5],[2],[0.1]]);
+	//var p2 = SIMPLEX_GRID([[0.5],[2],[-2,0.1]]);
+	var cap1  = capitello();
+	
+
+	capitelli=STRUCT([T([1])([0.3]),cap1]);
+
+
+
+	var p1 = SIMPLEX_GRID([[0.5],[2],[0.2]]);
+	var p2 = SIMPLEX_GRID([[0.5],[2],[-1.7,0.2]]);
+
+	var stru = STRUCT([T([0])([1.7]),p2,T([2])([-0.2]),p1]);
+	
+
+	var corrimano = STRUCT([stru,capitelli]);
+	return corrimano;
+}
+
+var corrimano_verticale_sx = T([0,1,2])([-6.7,-6.5,3.45])(corrimano_verticale_sx());
+DRAW(corrimano_verticale_sx);
+
+
+
+
+////////////////////////////////////
+var corrimano_laterale_sx1 = function (){
+
+		var capitello = function (){
+			c1 = get_parametric_curve(0.8,0,0);
+			c2 = get_parametric_curve(0.6,0.3,0);
+			c3 = get_parametric_curve(0.3,0.5,0);
+			c4 = get_parametric_curve(0.8,0.9,0);
+			c5 = get_parametric_curve(0.9,1.5,0);
+			c6 = get_parametric_curve(0.9,1.7,0);
+			
+			var domain = PROD1x1([INTERVALS(1)(5),INTERVALS(1)(5)]);
+
+			var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0],c5[0],c6[0]]);
+			var outUp1 = MAP(cs1)(domain);
+
+			var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1],c5[1],c6[1]]);
+			var outUp2 = MAP(cs2)(domain);
+
+			var risultato = STRUCT([outUp1,outUp2]);
+
+			return risultato;
+		}
+
+	//var p1 = SIMPLEX_GRID([[0.5],[2],[0.1]]);
+	//var p2 = SIMPLEX_GRID([[0.5],[2],[-2,0.1]]);
+	var cap1  = capitello();
+	var cap2 = capitello();
+	
+
+	capitelli=STRUCT([T([1])([-0.3]),cap1,T([1])([1.2]),cap2]);
+	var p1 = SIMPLEX_GRID([[0.5],[2.5],[0.2]]);
+	var p2 = SIMPLEX_GRID([[0.5],[2.5],[-1.7,0.2]]);
+
+	var stru = STRUCT([T([0])([1.7]),p2,T([2])([-0.2]),p1]);
+	
+
+	var corrimano = STRUCT([stru,capitelli]);
+	return corrimano;
+}
+
+
+var corrimano_laterale_sx1 = T([0,1,2])([-4.5,-6.2,3.45])(R([0,1])(PI/2)(corrimano_laterale_sx1()));
+DRAW(corrimano_laterale_sx1);
+
+////////////////////
+
+
+
+var corrimano_verticale_centrale_sx = function (){
+
+		var capitello = function (){
+			c1 = get_parametric_curve(0.8,0,0);
+			c2 = get_parametric_curve(0.6,0.3,0);
+			c3 = get_parametric_curve(0.3,0.5,0);
+			c4 = get_parametric_curve(0.8,0.9,0);
+			c5 = get_parametric_curve(0.9,1.5,0);
+			c6 = get_parametric_curve(0.9,1.7,0);
+			
+			var domain = PROD1x1([INTERVALS(1)(5),INTERVALS(1)(5)]);
+
+			var cs1 = BEZIER(S1)([c1[0],c2[0],c3[0],c4[0],c5[0],c6[0]]);
+			var outUp1 = MAP(cs1)(domain);
+
+			var cs2 = BEZIER(S1)([c1[1],c2[1],c3[1],c4[1],c5[1],c6[1]]);
+			var outUp2 = MAP(cs2)(domain);
+
+			var risultato = STRUCT([outUp1,outUp2]);
+
+			return risultato;
+		}
+
+	//var p1 = SIMPLEX_GRID([[0.5],[2],[0.1]]);
+	//var p2 = SIMPLEX_GRID([[0.5],[2],[-2,0.1]]);
+	var cap1  = capitello();
+	var cap2 = capitello();
+	var cap3 = capitello();
+	var cap4 = capitello();
+	
+
+	capitelli=STRUCT([T([1,2])([-0.5,0.3]),cap1,T([1,2])([1.2,0.5]),cap2,T([1,2])([1.2,0.5]),cap3]);//,cap5]);
+
+
+
+	var p1 = SIMPLEX_GRID([[0.5],[4.5],[0.6]]);
+	var p2 = SIMPLEX_GRID([[0.5],[4.5],[-1.7,0.2]]);
+
+	var stru = STRUCT([T([0])([1.7]),R([1,2])(20*(PI/180)),p2,T([2])([-0.2]),p1]);
+	
+
+	var corrimano = STRUCT([stru,capitelli]);
+	return corrimano;
+}
+
+var corrimano_verticale_centrale_sx = T([0,1,2])([-2.3,-3,3])(corrimano_verticale_centrale_sx());
+DRAW(corrimano_verticale_centrale_sx);
+
